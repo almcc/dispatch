@@ -11,6 +11,18 @@
         {
             margin-bottom: 0px;
         }
+        .footer
+        {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+        body
+        {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
         </style>
     </head>
     <body>
@@ -26,6 +38,13 @@
             No page content.
             {% endblock content %}
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+        <div class="footer">
+            <p class="pull-right"><a href="/admin">Admin</a></p>
+            <p>© Alastair McClelland 2014</p>
+        </div></div></div></div>
     </body>
     <script src="{% static 'js/bootstrap.js' %}"></script>
 </html>
