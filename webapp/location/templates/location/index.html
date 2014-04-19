@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol>
+        {% for link in links %}
+        <li>{{ link }}</li>
+        {% endfor %}
+    </ol>
+{% endblock content %}
