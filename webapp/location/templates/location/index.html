@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ol>
-        {% for link in links %}
-        <li>{{ link }}</li>
+    <div class="row">
+        {% for tag_links in columns %}
+            <div class="{{ column_class }}">
+                {% for tag, links in tag_links %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ tag.name }}</div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                {% for link in links %}
+                                    <a href="{{ link.link }}" class="list-group-item">{{ link.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% endfor %}
-    </ol>
+    </div>
 {% endblock content %}

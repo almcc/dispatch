@@ -3,7 +3,7 @@ from location.models import Link, Tag
 
 
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link')
+    list_display = ('name', 'link', )
     list_filter = ('tags', 'created_at', 'updated_at')
     search_fields = ('name', 'link')
     readonly_fields = ('created_at', 'updated_at')
@@ -21,13 +21,13 @@ class LinkAdmin(admin.ModelAdmin):
     ]
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('name', 'position', 'column' )
     list_filter = ('created_at', 'updated_at')
-    search_fields = ('name', )
+    search_fields = ('name', 'position', 'column' )
     readonly_fields = ('created_at', 'updated_at')
     fieldsets = [
         ('Link', {
-            'fields': ('name', )
+            'fields': ('name', 'position', 'column' )
         }),
         ('Change History', {
             'classes': ('collapse', ),

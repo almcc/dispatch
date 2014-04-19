@@ -3,14 +3,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Warehouse</title>
+        <title>Dispatch</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.css' %}">
+        <style type="text/css">
+        div.list-group
+        {
+            margin-bottom: 0px;
+        }
+        </style>
     </head>
     <body>
-        {% block content %}
-        No page content.
-        {% endblock content %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h1>Dispatch</h1>
+                    </div>
+                </div>
+            </div>
+            {% block content %}
+            No page content.
+            {% endblock content %}
+        </div>
     </body>
     <script src="{% static 'js/bootstrap.js' %}"></script>
 </html>
