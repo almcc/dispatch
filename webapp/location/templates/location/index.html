@@ -1,6 +1,81 @@
 {% extends "base.html" %}
 
 {% block content %}
+     <div class="row">
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-search"></span></h1>
+                <p>Google</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-flag"></span></h1>
+                <p>Facebook</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-bookmark"></span></h1>
+                <p>Directory</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-book"></span></h1>
+                <p>Bookings</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-headphones"></span></h1>
+                <p>Radio</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-tint"></span></h1>
+                <p>Menu</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-calendar"></span></h1>
+                <p>Calendar</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-send"></span></h1>
+                <p>Email</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-time"></span></h1>
+                <p>Time</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-earphone"></span></h1>
+                <p>Phone</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-leaf"></span></h1>
+                <p>Ticketing</p>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default" style="width:100%; min-width: 100px;">
+                <h1><span class="glyphicon glyphicon-tower"></span></h1>
+                <p>Forge</p>
+            </a>
+        </div>
+    </div>
+    <br />
     <div class="row">
         {% for tag_links in columns %}
             <div class="{{ column_class }}">
