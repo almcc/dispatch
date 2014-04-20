@@ -6,6 +6,7 @@
         <title>Dispatch</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.css' %}">
+
         <style type="text/css">
         div.list-group
         {
@@ -34,17 +35,26 @@
                     </div>
                 </div>
             </div>
-            {% block content %}
-            No page content.
-            {% endblock content %}
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-        <div class="footer">
-            <p class="pull-right"><a href="/admin">Admin</a></p>
-            <p>© Alastair McClelland 2014</p>
-        </div></div></div></div>
+                    {% block content %}
+                    No page content.
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer">
+                        <p class="pull-right"><a href="/admin">Admin</a></p>
+                        <p>© Alastair McClelland 2014</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <script src="{% static 'js/bootstrap.js' %}"></script>
 </html>

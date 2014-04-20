@@ -27,7 +27,6 @@ class Link(models.Model):
         ('warning', 'Yellow'),
         ('danger', 'Red'),
     )
-
     name = models.CharField(default = '', max_length = 100)
     link = models.URLField(default = '', max_length = 400)
     colour = models.CharField(default = 'default', max_length = 10, choices=COLOUR_CHOICES)
