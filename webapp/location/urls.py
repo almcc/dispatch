@@ -13,6 +13,6 @@ urlpatterns = patterns('',
 
     url(r'^tag/move/up/(\d+)/$', 'location.views.moveTagUp'),
     url(r'^tag/move/down/(\d+)/$', 'location.views.moveTagDown'),
-    url(r'^tag/move/left/(\d+)/$', 'location.views.moveTagRight'),
-    url(r'^tag/move/right/(\d+)/$', 'location.views.moveTagLeft'),
+    url(r'^tag/move/left/(\d+)/$', 'location.views.moveTagLeft'),
+    url(r'^tag/move/right/(\d+)/$', 'location.views.moveTagRight'),
 )

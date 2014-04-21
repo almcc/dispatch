@@ -76,16 +76,70 @@ def deleteTag(request, tagId):
     return HttpResponseRedirect('/')
 
 def moveTagUp(request, tagId):
+    instance = Tag.objects.get(pk=tagId)
+    nextInstances = Tag.objects.filter(position=instance.position-1, column=instance.column)
+    print instance
+    print nextInstances
+    if len(nextInstances) == 1:
+        nextInstance = nextInstances[0]
+        instance.position = instance.position - 1
+        nextInstance.position = nextInstance.position + 1
+        instance.save()
+        nextInstance.save()
     return HttpResponseRedirect('/')
 
 def moveTagDown(request, tagId):
+    instance = Tag.objects.get(pk=tagId)
+    nextInstances = Tag.objects.filter(position=instance.position+1, column=instance.column)
+    print instance
+    print nextInstances
+    if len(nextInstances) == 1:
+        nextInstance = nextInstances[0]
+        instance.position = instance.position + 1
+        nextInstance.position = nextInstance.position - 1
+        instance.save()
+        nextInstance.save()
     return HttpResponseRedirect('/')
 
 def moveTagLeft(request, tagId):
+    instance = Tag.objects.get(pk=tagId)
+    oldColumn = instance.column
+    newColumn = oldColumn - 1
+
+    if newColumn >= 1:
+        maxPosition = getMaxPositionOfColumn(newColumn)
+        if maxPosition == None:
+            maxPosition = 0
+        instance.column = newColumn
+        instance.position = maxPosition + 1
+        instance.save()
+        reIndexColumn(oldColumn)
     return HttpResponseRedirect('/')
 
 def moveTagRight(request, tagId):
+    instance = Tag.objects.get(pk=tagId)
+    oldColumn = instance.column
+    newColumn = oldColumn + 1
+    if newColumn <= 6:
+        maxPosition = getMaxPositionOfColumn(newColumn)
+        if maxPosition == None:
+            maxPosition = 0
+        instance.column = newColumn
+        instance.position = maxPosition + 1
+        instance.save()
+        reIndexColumn(oldColumn)
     return HttpResponseRedirect('/')
+
+def getMaxPositionOfColumn(column):
+    return Tag.objects.filter(column=column).aggregate(Max('position'))['position__max']
+
+def reIndexColumn(column):
+    tags = Tag.objects.order_by('position').filter(column = column)
+    index = 1;
+    for tag in tags:
+        tag.position = index
+        tag.save()
+        index = index + 1
 
 
 
