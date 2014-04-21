@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from location.models import Link, Tag
-from location.forms import LinkForm
+from location.forms import LinkForm, TagForm
 from django.db.models import Max
 from django.http import HttpResponseRedirect
 
@@ -47,4 +47,39 @@ def deleteLink(request, linkId):
         instance = Link.objects.get(pk=linkId)
         instance.delete()
     return HttpResponseRedirect('/')
+
+def newTag(request):
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = TagForm()
+    return render(request, 'location/new-tag.html', { 'form': form })
+
+def editTag(request, tagId):
+    instance = Tag.objects.get(pk=tagId)
+    if request.method == 'POST':
+        form = TagForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = TagForm(instance=instance)
+    return render(request, 'location/edit-tag.html', { 'form': form, 'tagId': tagId})
+
+def deleteTag(request, tagId):
+    if request.method == 'POST':
+        instance = Tag.objects.get(pk=tagId)
+        instance.delete()
+    return HttpResponseRedirect('/')
+
+
+
+
+
+
+
+
 
