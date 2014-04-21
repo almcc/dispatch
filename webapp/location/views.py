@@ -75,7 +75,17 @@ def deleteTag(request, tagId):
         instance.delete()
     return HttpResponseRedirect('/')
 
+def moveTagUp(request, tagId):
+    return HttpResponseRedirect('/')
 
+def moveTagDown(request, tagId):
+    return HttpResponseRedirect('/')
+
+def moveTagLeft(request, tagId):
+    return HttpResponseRedirect('/')
+
+def moveTagRight(request, tagId):
+    return HttpResponseRedirect('/')
 
 
 
