@@ -32,7 +32,7 @@
                     <div class="page-header">
                         <div class="btn-group pull-right">
                           <a href="/" class="btn btn-sm btn-default">Home</a>
-                          <button type="button" class="btn btn-sm btn-default">Edit</button>
+                          <button id="edit-toggle" type="button" class="btn btn-sm btn-default">Edit</button>
                           <a href="/link" class="btn btn-sm btn-default">New Link</a>
                           <a href="/tag" class="btn btn-sm btn-default">New Tag</a>
                           <a href="/admin" class="btn btn-sm btn-default">Admin</a>
@@ -63,4 +63,11 @@
     </body>
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript">
+        $( "#edit-toggle" ).click(function() {
+            $( "#edit-toggle" ).toggleClass("active").toggleClass("btn-default").toggleClass("btn-danger");
+            $( ".go-link" ).toggleClass("hidden");
+            $( ".edit-link" ).toggleClass("hidden");
+        });
+    </script>
 </html>

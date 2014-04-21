@@ -10,7 +10,8 @@
                         <div class="panel-body">
                             <div class="list-group">
                                 {% for link in links %}
-                                    <a href="/link/{{link.pk}}" class="list-group-item list-group-item-{{ link.colour }}">{{ link.name }}</a>
+                                    <a href="{{link.link}}" class="go-link list-group-item list-group-item-{{ link.colour }}">{{ link.name }}</a>
+                                    <a href="/link/{{link.pk}}" class="edit-link hidden list-group-item list-group-item-{{ link.colour }}"><span class="glyphicon glyphicon-wrench" style="margin-right:3px;"></span> {{ link.name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -19,4 +20,5 @@
             </div>
         {% endfor %}
     </div>
+
 {% endblock content %}
