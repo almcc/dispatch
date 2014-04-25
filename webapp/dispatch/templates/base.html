@@ -6,7 +6,6 @@
         <title>Dispatch</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.css' %}">
-
         <style type="text/css">
         div.list-group
         {
@@ -31,6 +30,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
+                        <div class="btn-group pull-right">
+                          <a href="/" class="btn btn-sm btn-default">Home</a>
+                          <button id="edit-toggle" type="button" class="btn btn-sm btn-default">Edit</button>
+                          <a href="/link" class="btn btn-sm btn-default">New Link</a>
+                          <a href="/tag" class="btn btn-sm btn-default">New Tag</a>
+                          <a href="/admin" class="btn btn-sm btn-default">Admin</a>
+                        </div>
                         <h1>Dispatch</h1>
                     </div>
                 </div>
@@ -49,12 +55,37 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer">
-                        <p class="pull-right"><a href="/admin">Admin</a></p>
                         <p>© Alastair McClelland 2014</p>
                     </div>
                 </div>
             </div>
         </div>
     </body>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript">
+
+        toggleEdit = function() {
+            $( "#edit-toggle" ).toggleClass("active").toggleClass("btn-default").toggleClass("btn-danger");
+            $( ".go-link" ).toggleClass("hidden");
+            $( ".edit-link" ).toggleClass("hidden");
+            $( ".show-tag-header" ).toggleClass("hidden");
+            $( ".edit-tag-header" ).toggleClass("hidden");
+            if($.cookie('inEdit') === undefined){
+                $.cookie('inEdit', 'True');
+            } else {
+                $.removeCookie('inEdit');
+            }
+        };
+
+        $( document ).ready(function() {
+            if($.cookie('inEdit') === 'True'){
+                toggleEdit();
+                $.cookie('inEdit', 'True');
+            }
+            $( "#edit-toggle" ).click(toggleEdit);
+        });
+
+    </script>
 </html>

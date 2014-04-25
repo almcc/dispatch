@@ -81,11 +81,23 @@
             <div class="{{ column_class }}">
                 {% for tag, links in tag_links %}
                     <div class="panel panel-{{ tag.colour }}">
-                        <div class="panel-heading">{{ tag.name }}</div>
+                        <div class="panel-heading show-tag-header">
+                            {{ tag.name }}
+                        </div>
+                        <div class="panel-heading edit-tag-header hidden">
+                            <a href="/tag/{{tag.pk}}"><span class="glyphicon glyphicon-wrench" style="margin-right:3px;"></span> {{ tag.name }}</a>
+                            <div class="btn-group btn-group-xs pull-right">
+                                <a href="/tag/move/up/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                                <a href="/tag/move/down/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                                <a href="/tag/move/left/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                                <a href="/tag/move/right/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                            </div>
+                        </div>
                         <div class="panel-body">
                             <div class="list-group">
                                 {% for link in links %}
-                                    <a href="{{ link.link }}" class="list-group-item list-group-item-{{ link.colour }}">{{ link.name }}</a>
+                                    <a href="{{link.link}}" class="go-link list-group-item list-group-item-{{ link.colour }}">{{ link.name }}</a>
+                                    <a href="/link/{{link.pk}}" class="edit-link hidden list-group-item list-group-item-{{ link.colour }}"><span class="glyphicon glyphicon-wrench" style="margin-right:3px;"></span> {{ link.name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -94,4 +106,5 @@
             </div>
         {% endfor %}
     </div>
+
 {% endblock content %}
