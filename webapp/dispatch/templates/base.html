@@ -62,14 +62,30 @@
         </div>
     </body>
     <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript">
-        $( "#edit-toggle" ).click(function() {
+
+        toggleEdit = function() {
             $( "#edit-toggle" ).toggleClass("active").toggleClass("btn-default").toggleClass("btn-danger");
             $( ".go-link" ).toggleClass("hidden");
             $( ".edit-link" ).toggleClass("hidden");
             $( ".show-tag-header" ).toggleClass("hidden");
             $( ".edit-tag-header" ).toggleClass("hidden");
+            if($.cookie('inEdit') === undefined){
+                $.cookie('inEdit', 'True');
+            } else {
+                $.removeCookie('inEdit');
+            }
+        };
+
+        $( document ).ready(function() {
+            if($.cookie('inEdit') === 'True'){
+                toggleEdit();
+                $.cookie('inEdit', 'True');
+            }
+            $( "#edit-toggle" ).click(toggleEdit);
         });
+
     </script>
 </html>
