@@ -7,6 +7,8 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     max = Tag.objects.all().aggregate(Max('column'))['column__max']
+    if max == None:
+        max = 1
     if max > 6:
         max = 6
 

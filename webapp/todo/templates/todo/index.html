@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block controls %}
+    <a href="/todo/task" class="btn btn-sm btn-default">New Task</a>
+{% endblock controls %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"><h4>Task</h4></div>
+            <div class="col-md-8"><h4>Description</h4></div>
+            <div class="col-md-2"><h4>Progress<h4></div>
+        </div>
+        <hr />
+        {% for task in tasks %}
+            <div class="row">
+                <div class="col-md-2"><a href="/todo/task/{{ task.pk }}/">{{ task.name }}</a></div>
+                <div class="col-md-8"><p>{{ task.description }}</p></div>
+                <div class="col-md-2">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ task.complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ task.complete }}%;"></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

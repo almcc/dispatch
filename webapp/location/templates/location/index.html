@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block controls %}
+    <button id="edit-toggle" type="button" class="btn btn-sm btn-default">Edit</button>
+    <a href="/link" class="btn btn-sm btn-default">New Link</a>
+    <a href="/tag" class="btn btn-sm btn-default">New Tag</a>
+{% endblock controls %}
+
 {% block content %}
     <div class="row">
         {% for tag_links in columns %}
