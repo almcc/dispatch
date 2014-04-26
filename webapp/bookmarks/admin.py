@@ -1,5 +1,5 @@
 from django.contrib import admin
-from location.models import Link, Tag
+from bookmarks.models import Link, Tag
 
 
 class LinkAdmin(admin.ModelAdmin):

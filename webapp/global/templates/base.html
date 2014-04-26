@@ -33,7 +33,8 @@
                         <div class="btn-group pull-right" style="margin-left:20px;">
                             {% block menu %}
                                 <a href="/" class="btn btn-sm btn-default">Home</a>
-                                <a href="/todo" class="btn btn-sm btn-default">Todo</a>
+                                <a href="/bookmarks/" class="btn btn-sm btn-default">Bookmarks</a>
+                                <a href="/tasking/" class="btn btn-sm btn-default">Tasking</a>
                                 <a href="/admin" class="btn btn-sm btn-default">Admin</a>
                             {% endblock menu %}
                         </div>
@@ -47,15 +48,9 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    {% block content %}
-                    No page content.
-                    {% endblock content %}
-                </div>
-            </div>
-        </div>
+        {% block content %}
+        No page content.
+        {% endblock content %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

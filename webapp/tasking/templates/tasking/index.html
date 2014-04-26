@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block controls %}
-    <a href="/todo/task" class="btn btn-sm btn-default">New Task</a>
+    <a href="/tasking/task" class="btn btn-sm btn-default">New Task</a>
 {% endblock controls %}
 
 {% block content %}
@@ -15,7 +15,7 @@
         <hr />
         {% for task in tasks %}
             <div class="row">
-                <div class="col-md-2"><a href="/todo/task/{{ task.pk }}/">{{ task.name }}</a></div>
+                <div class="col-md-2"><a href="/tasking/task/{{ task.pk }}/">{{ task.name }}</a></div>
                 <div class="col-md-8"><p>{{ task.description }}</p></div>
                 <div class="col-md-2">
                     <div class="progress">

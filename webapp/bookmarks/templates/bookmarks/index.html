@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block controls %}
+    <button id="edit-toggle" type="button" class="btn btn-sm btn-default">Edit</button>
+    <a href="/bookmarks/link" class="btn btn-sm btn-default">New Link</a>
+    <a href="/bookmarks/tag" class="btn btn-sm btn-default">New Tag</a>
+{% endblock controls %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            {% for tag_links in columns %}
+                <div class="{{ column_class }}">
+                    {% for tag, links in tag_links %}
+                        <div class="panel panel-{{ tag.colour }}">
+                            <div class="panel-heading show-tag-header">
+                                {{ tag.name }}
+                            </div>
+                            <div class="panel-heading edit-tag-header hidden">
+                                <a href="/bookmarks/tag/{{tag.pk}}"><span class="glyphicon glyphicon-wrench" style="margin-right:3px;"></span> {{ tag.name }}</a>
+                                <div class="btn-group btn-group-xs pull-right">
+                                    <a href="/bookmarks/tag/move/up/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                                    <a href="/bookmarks/tag/move/down/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                                    <a href="/bookmarks/tag/move/left/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                                    <a href="/bookmarks/tag/move/right/{{ tag.pk }}/" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    {% for link in links %}
+                                        <a href="{{link.link}}" class="go-link list-group-item list-group-item-{{ link.colour }}">{{ link.name }}</a>
+                                        <a href="/bookmarks/link/{{link.pk}}" class="edit-link hidden list-group-item list-group-item-{{ link.colour }}"><span class="glyphicon glyphicon-wrench" style="margin-right:3px;"></span> {{ link.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from todo.models import Task
+from tasking.models import Task
 
 
 class TaskAdmin(admin.ModelAdmin):

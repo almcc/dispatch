@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from location.models import Link, Tag
+from bookmarks.models import Link, Tag
 
 class LinkForm(ModelForm):
     class Meta:
