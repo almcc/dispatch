@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ modelPath }}/{{ modelId }}/" method="post" class="form-horizontal" role="form">
+                <form action="{{ modelPath }}/edit/{{ modelId }}/" method="post" class="form-horizontal" role="form">
                     {% csrf_token %}
                     {% for field in form %}
                         <div class="form-group">

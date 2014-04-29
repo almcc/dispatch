@@ -12,6 +12,10 @@ class Task(models.Model):
     state = models.CharField(default = 'default', max_length = 10, choices=STATE_CHOICES)
     complete = models.IntegerField()
     link = models.URLField(default = '', max_length = 400)
+    subtasks = models.ManyToManyField("self", blank=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
+    def __unicode__(self ):
+        return self.name
 
