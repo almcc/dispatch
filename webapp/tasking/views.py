@@ -2,6 +2,8 @@ from django.shortcuts import render
 from tasking.models import Task
 from tasking.forms import TaskForm
 from django.http import HttpResponseRedirect
+from django.forms.models import model_to_dict
+
 
 def index(request):
     tasks = Task.objects.all()
@@ -17,6 +19,13 @@ def newTask(request):
         form = TaskForm()
     return render(request, 'new-model.html', { 'form': form,
                                                'modelPath': '/tasking/task' })
+
+
+def viewTask(request, modelId):
+    instance = Task.objects.get(pk=modelId)
+    model = model_to_dict(instance)
+    return render(request, 'view-model.html', { 'model': model })
+
 
 def editTask(request, modelId):
     instance = Task.objects.get(pk=modelId)

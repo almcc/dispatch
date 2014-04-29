@@ -23,6 +23,12 @@ def index(request):
     return render(request, 'bookmarks/index.html', {"columns": columns,
                                                    "column_class": "col-md-" + str(12//max)})
 
+
+def viewLink(request, modelId):
+    instance = Link.objects.get(pk=modelId)
+    model = model_to_dict(instance)
+    return render(request, 'view-model.html', { 'model': model })
+
 def newLink(request):
     if request.method == 'POST':
         form = LinkForm(request.POST)
@@ -49,6 +55,11 @@ def deleteLink(request, modelId):
         instance = Link.objects.get(pk=modelId)
         instance.delete()
     return HttpResponseRedirect('/bookmarks/')
+
+def viewTag(request, modelId):
+    instance = Tag.objects.get(pk=modelId)
+    model = model_to_dict(instance)
+    return render(request, 'view-model.html', { 'model': model })
 
 def newTag(request):
     if request.method == 'POST':
