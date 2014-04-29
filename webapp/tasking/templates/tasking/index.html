@@ -5,32 +5,38 @@
 {% endblock controls %}
 
 {% block content %}
-
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3"><h4>Task</h4></div>
-            <div class="col-md-2"><h4>State<h4></div>
-            <div class="col-md-3"><h4>Link</h4></div>
-            <div class="col-md-2"><h4>Progress<h4></div>
-            <div class="col-md-2"><h4>Controls<h4></div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>State</th>
+                        <th>Link</th>
+                        <th>Progress</th>
+                        <th>Controls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td><a href="/tasking/task/{{ task.pk }}/">{{ task.name }}</a></td>
+                            <td>{{ task.state }}</td>
+                            <td><a href="{{ task.link }}">{{ task.link }}</a></td>
+                            <td>
+                                <div class="progress" style="margin-bottom:0px;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ task.complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ task.complete }}%;"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-xs btn-default" href="/tasking/task/edit/{{ task.pk }}/">Edit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <hr />
-        {% for task in tasks %}
-            <div class="row">
-                <div class="col-md-3"><a href="/tasking/task/{{ task.pk }}/">{{ task.name }}</a></div>
-                <div class="col-md-2">{{ task.state }}</div>
-                <div class="col-md-3"><a href="{{ task.link }}">{{ task.link }}</a></div>
-                <div class="col-md-2">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ task.complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ task.complete }}%;"></div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="btn-group">
-                        <a class="btn btn-xs btn-default" href="/tasking/task/edit/{{ task.pk }}/">Edit</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
     </div>
 {% endblock content %}
