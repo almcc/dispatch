@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load extras %}
+
+{% block controls %}
+    <a href="/tasking/task" class="btn btn-sm btn-default">New Task</a>
+{% endblock controls %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3>{{ instance.name }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Details</div>
+                    <div class="panel-body">
+                        <pre style="border:0px;background-color:white; padding:0px; margin:0px;">{{ instance.description }}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Actions</div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                        <a class="btn btn-xs btn-default" href="/tasking/task/edit/{{ instance.pk }}/">Edit</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">State</div>
+                    <div class="panel-body">
+                        {{ instance.state }}
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Complete</div>
+                    <div class="panel-body">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ instance.complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ instance.complete }}%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Link</div>
+                    <div class="panel-body">
+                        <a href="{{ instance.link }}">{{ instance.link }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Subtasks</div>
+                    <ul class="list-group">
+                        {% for task in instance.subtasks.all %}
+                            <a class="list-group-item" href="/tasking/task/{{ task.pk }}/">
+                                <span class="badge">{{ task.complete }}%</span>
+                                {{ task.name }}
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

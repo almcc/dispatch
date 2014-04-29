@@ -23,8 +23,7 @@ def newTask(request):
 
 def viewTask(request, modelId):
     instance = Task.objects.get(pk=modelId)
-    model = model_to_dict(instance)
-    return render(request, 'view-model.html', { 'model': model })
+    return render(request, 'tasking/view-task.html', { 'instance': instance })
 
 
 def editTask(request, modelId):
