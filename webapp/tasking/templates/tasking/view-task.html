@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load extras %}
+{% load markdown_deux_tags %}
 
 {% block controls %}
     <a href="/tasking/task" class="btn btn-sm btn-default">New Task</a>
@@ -19,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Details</div>
                     <div class="panel-body">
-                        <pre style="border:0px;background-color:white; padding:0px; margin:0px;">{{ instance.description }}</pre>
+                        {{ instance.description|markdown }}
                     </div>
                 </div>
             </div>
