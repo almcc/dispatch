@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from bookmarks.models import Link, Tag
+from bookmarks.models import Link, Tag, Page
 from bookmarks.forms import LinkForm, TagForm
 from django.db.models import Max
 from django.http import HttpResponseRedirect
@@ -12,15 +12,19 @@ def index(request):
     if max > 6:
         max = 6
 
-    columns = []
-    for column in range(1,max+1):
-        tags = Tag.objects.order_by('position').filter(column = column)
-        tag_links = []
-        for tag in tags:
-            tag_links.append((tag, Link.objects.order_by('name').filter(tags__name = tag.name)))
-        columns.append(tag_links)
+    bookmarks = []
+    pages = Page.objects.all()
+    for page in pages:
+        columns = []
+        for column in range(1,max+1):
+            tags = Tag.objects.order_by('position').filter(column = column).filter(page = page)
+            tag_links = []
+            for tag in tags:
+                tag_links.append((tag, Link.objects.order_by('name').filter(tags__name = tag.name)))
+            columns.append(tag_links)
+        bookmarks.append((page, columns))
 
-    return render(request, 'bookmarks/index.html', {"columns": columns,
+    return render(request, 'bookmarks/index.html', {"bookmarks": bookmarks,
                                                    "column_class": "col-md-" + str(12//max)})
 
 

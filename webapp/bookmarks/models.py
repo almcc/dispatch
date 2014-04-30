@@ -1,5 +1,16 @@
 from django.db import models
 
+class Page(models.Model):
+    name = models.CharField(default = '', max_length = 50)
+    position = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+
+    def __unicode__(self):
+        return self.name
+
+
 class Tag(models.Model):
     COLOUR_CHOICES = (
         ('default', 'Grey'),
@@ -13,11 +24,14 @@ class Tag(models.Model):
     position = models.IntegerField()
     column = models.IntegerField()
     colour = models.CharField(default = 'default', max_length = 10, choices=COLOUR_CHOICES)
+    page = models.ForeignKey(Page)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
+
     def __unicode__(self):
         return self.name
+
 
 class Link(models.Model):
     COLOUR_CHOICES = (
@@ -34,8 +48,6 @@ class Link(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
+
     def __unicode__(self):
         return self.name
-
-
-

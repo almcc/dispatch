@@ -1,5 +1,5 @@
 from django.contrib import admin
-from bookmarks.models import Link, Tag
+from bookmarks.models import Link, Tag, Page
 
 
 class LinkAdmin(admin.ModelAdmin):
@@ -21,13 +21,29 @@ class LinkAdmin(admin.ModelAdmin):
     ]
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'position', 'column', 'colour')
+    list_display = ('name', 'position', 'column', 'colour', 'page')
     list_filter = ('created_at', 'updated_at')
-    search_fields = ('name', 'position', 'column', 'colour')
+    search_fields = ('name', 'position', 'column', 'colour', 'page')
     readonly_fields = ('created_at', 'updated_at')
     fieldsets = [
         ('Link', {
-            'fields': ('name', 'position', 'column', 'colour')
+            'fields': ('name', 'position', 'column', 'colour', 'page')
+        }),
+        ('Change History', {
+            'classes': ('collapse', ),
+            'fields': ('created_at', 'updated_at')
+        })
+    ]
+
+
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position')
+    list_filter = ('created_at', 'updated_at')
+    search_fields = ('name', 'position')
+    readonly_fields = ('created_at', 'updated_at')
+    fieldsets = [
+        ('Link', {
+            'fields': ('name', 'position')
         }),
         ('Change History', {
             'classes': ('collapse', ),
@@ -37,3 +53,4 @@ class TagAdmin(admin.ModelAdmin):
 
 admin.site.register(Link, LinkAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Page, PageAdmin)
